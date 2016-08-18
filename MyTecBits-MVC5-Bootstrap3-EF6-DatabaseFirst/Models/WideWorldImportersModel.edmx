@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WideWorldImportersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateProvinceID" Type="int" Nullable="false" />
+          <Property Name="Location" Type="geography" />
+          <Property Name="LatestRecordedPopulation" Type="bigint" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="FormalName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="IsoAlpha3Code" Type="nvarchar" MaxLength="3" />
+          <Property Name="IsoNumericCode" Type="int" />
+          <Property Name="CountryType" Type="nvarchar" MaxLength="20" />
+          <Property Name="LatestRecordedPopulation" Type="bigint" />
+          <Property Name="Continent" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Subregion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Border" Type="geography" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveryMethods">
+          <Key>
+            <PropertyRef Name="DeliveryMethodID" />
+          </Key>
+          <Property Name="DeliveryMethodID" Type="int" Nullable="false" />
+          <Property Name="DeliveryMethodName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="int" Nullable="false" />
+          <Property Name="PaymentMethodName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PreferredName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SearchName" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsPermittedToLogon" Type="bit" Nullable="false" />
+          <Property Name="LogonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsExternalLogonProvider" Type="bit" Nullable="false" />
+          <Property Name="HashedPassword" Type="varbinary(max)" />
+          <Property Name="IsSystemUser" Type="bit" Nullable="false" />
+          <Property Name="IsEmployee" Type="bit" Nullable="false" />
+          <Property Name="IsSalesperson" Type="bit" Nullable="false" />
+          <Property Name="UserPreferences" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="CustomFields" Type="nvarchar(max)" />
+          <Property Name="OtherLanguages" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateProvinces">
+          <Key>
+            <PropertyRef Name="StateProvinceID" />
+          </Key>
+          <Property Name="StateProvinceID" Type="int" Nullable="false" />
+          <Property Name="StateProvinceCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="StateProvinceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="SalesTerritory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Border" Type="geography" />
+          <Property Name="LatestRecordedPopulation" Type="bigint" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters">
+          <Key>
+            <PropertyRef Name="SystemParameterID" />
+          </Key>
+          <Property Name="SystemParameterID" Type="int" Nullable="false" />
+          <Property Name="DeliveryAddressLine1" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="DeliveryAddressLine2" Type="nvarchar" MaxLength="60" />
+          <Property Name="DeliveryCityID" Type="int" Nullable="false" />
+          <Property Name="DeliveryPostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeliveryLocation" Type="geography" Nullable="false" />
+          <Property Name="PostalAddressLine1" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="PostalAddressLine2" Type="nvarchar" MaxLength="60" />
+          <Property Name="PostalCityID" Type="int" Nullable="false" />
+          <Property Name="PostalPostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ApplicationSettings" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="LastEditedWhen" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionTypes">
+          <Key>
+            <PropertyRef Name="TransactionTypeID" />
+          </Key>
+          <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+          <Property Name="TransactionTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Application_Cities_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Cities_StateProvinceID_Application_StateProvinces">
+          <End Role="StateProvinces" Type="Self.StateProvinces" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateProvinces">
+              <PropertyRef Name="StateProvinceID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Countries_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="Countries" Type="Self.Countries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Countries">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_DeliveryMethods_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="DeliveryMethods" Type="Self.DeliveryMethods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="DeliveryMethods">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_PaymentMethods_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PaymentMethods">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_People_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="People1" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="People1">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_StateProvinces_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="StateProvinces" Type="Self.StateProvinces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="StateProvinces">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_StateProvinces_CountryID_Application_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="StateProvinces" Type="Self.StateProvinces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="StateProvinces">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_SystemParameters_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="SystemParameters" Type="Self.SystemParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SystemParameters">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_SystemParameters_DeliveryCityID_Application_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="SystemParameters" Type="Self.SystemParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="SystemParameters">
+              <PropertyRef Name="DeliveryCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_SystemParameters_PostalCityID_Application_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="SystemParameters" Type="Self.SystemParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="SystemParameters">
+              <PropertyRef Name="PostalCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_TransactionTypes_Application_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="TransactionTypes" Type="Self.TransactionTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="TransactionTypes">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WideWorldImportersModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="DeliveryMethods" EntityType="Self.DeliveryMethods" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="StateProvinces" EntityType="Self.StateProvinces" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="SystemParameters" EntityType="Self.SystemParameters" Schema="Application" store:Type="Tables" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" Schema="Application" store:Type="Tables" />
+          <AssociationSet Name="FK_Application_Cities_Application_People" Association="Self.FK_Application_Cities_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Cities_StateProvinceID_Application_StateProvinces" Association="Self.FK_Application_Cities_StateProvinceID_Application_StateProvinces">
+            <End Role="StateProvinces" EntitySet="StateProvinces" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Countries_Application_People" Association="Self.FK_Application_Countries_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="Countries" EntitySet="Countries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_DeliveryMethods_Application_People" Association="Self.FK_Application_DeliveryMethods_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="DeliveryMethods" EntitySet="DeliveryMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_PaymentMethods_Application_People" Association="Self.FK_Application_PaymentMethods_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_People_Application_People" Association="Self.FK_Application_People_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="People1" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_StateProvinces_Application_People" Association="Self.FK_Application_StateProvinces_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="StateProvinces" EntitySet="StateProvinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_StateProvinces_CountryID_Application_Countries" Association="Self.FK_Application_StateProvinces_CountryID_Application_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="StateProvinces" EntitySet="StateProvinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_SystemParameters_Application_People" Association="Self.FK_Application_SystemParameters_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="SystemParameters" EntitySet="SystemParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_SystemParameters_DeliveryCityID_Application_Cities" Association="Self.FK_Application_SystemParameters_DeliveryCityID_Application_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="SystemParameters" EntitySet="SystemParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_SystemParameters_PostalCityID_Application_Cities" Association="Self.FK_Application_SystemParameters_PostalCityID_Application_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="SystemParameters" EntitySet="SystemParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_TransactionTypes_Application_People" Association="Self.FK_Application_TransactionTypes_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WideWorldImportersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="Geography" />
+          <Property Name="LatestRecordedPopulation" Type="Int64" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_Cities_Application_People" FromRole="Cities" ToRole="People" />
+          <NavigationProperty Name="StateProvince" Relationship="Self.FK_Application_Cities_StateProvinceID_Application_StateProvinces" FromRole="Cities" ToRole="StateProvinces" />
+          <NavigationProperty Name="SystemParameters" Relationship="Self.FK_Application_SystemParameters_DeliveryCityID_Application_Cities" FromRole="Cities" ToRole="SystemParameters" />
+          <NavigationProperty Name="SystemParameters1" Relationship="Self.FK_Application_SystemParameters_PostalCityID_Application_Cities" FromRole="Cities" ToRole="SystemParameters" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FormalName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsoAlpha3Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="IsoNumericCode" Type="Int32" />
+          <Property Name="CountryType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LatestRecordedPopulation" Type="Int64" />
+          <Property Name="Continent" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Subregion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Border" Type="Geography" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_Countries_Application_People" FromRole="Countries" ToRole="People" />
+          <NavigationProperty Name="StateProvinces" Relationship="Self.FK_Application_StateProvinces_CountryID_Application_Countries" FromRole="Countries" ToRole="StateProvinces" />
+        </EntityType>
+        <EntityType Name="DeliveryMethod">
+          <Key>
+            <PropertyRef Name="DeliveryMethodID" />
+          </Key>
+          <Property Name="DeliveryMethodID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_DeliveryMethods_Application_People" FromRole="DeliveryMethods" ToRole="People" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_PaymentMethods_Application_People" FromRole="PaymentMethods" ToRole="People" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PreferredName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SearchName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsPermittedToLogon" Type="Boolean" Nullable="false" />
+          <Property Name="LogonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsExternalLogonProvider" Type="Boolean" Nullable="false" />
+          <Property Name="HashedPassword" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsSystemUser" Type="Boolean" Nullable="false" />
+          <Property Name="IsEmployee" Type="Boolean" Nullable="false" />
+          <Property Name="IsSalesperson" Type="Boolean" Nullable="false" />
+          <Property Name="UserPreferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CustomFields" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OtherLanguages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_Application_Cities_Application_People" FromRole="People" ToRole="Cities" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_Application_Countries_Application_People" FromRole="People" ToRole="Countries" />
+          <NavigationProperty Name="DeliveryMethods" Relationship="Self.FK_Application_DeliveryMethods_Application_People" FromRole="People" ToRole="DeliveryMethods" />
+          <NavigationProperty Name="PaymentMethods" Relationship="Self.FK_Application_PaymentMethods_Application_People" FromRole="People" ToRole="PaymentMethods" />
+          <NavigationProperty Name="People1" Relationship="Self.FK_Application_People_Application_People" FromRole="People" ToRole="People1" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_Application_People_Application_People" FromRole="People1" ToRole="People" />
+          <NavigationProperty Name="StateProvinces" Relationship="Self.FK_Application_StateProvinces_Application_People" FromRole="People" ToRole="StateProvinces" />
+          <NavigationProperty Name="SystemParameters" Relationship="Self.FK_Application_SystemParameters_Application_People" FromRole="People" ToRole="SystemParameters" />
+          <NavigationProperty Name="TransactionTypes" Relationship="Self.FK_Application_TransactionTypes_Application_People" FromRole="People" ToRole="TransactionTypes" />
+        </EntityType>
+        <EntityType Name="StateProvince">
+          <Key>
+            <PropertyRef Name="StateProvinceID" />
+          </Key>
+          <Property Name="StateProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="StateProvinceCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateProvinceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="SalesTerritory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Border" Type="Geography" />
+          <Property Name="LatestRecordedPopulation" Type="Int64" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_Application_Cities_StateProvinceID_Application_StateProvinces" FromRole="StateProvinces" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Application_StateProvinces_CountryID_Application_Countries" FromRole="StateProvinces" ToRole="Countries" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_StateProvinces_Application_People" FromRole="StateProvinces" ToRole="People" />
+        </EntityType>
+        <EntityType Name="SystemParameter">
+          <Key>
+            <PropertyRef Name="SystemParameterID" />
+          </Key>
+          <Property Name="SystemParameterID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryAddressLine1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryAddressLine2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryCityID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryLocation" Type="Geography" Nullable="false" />
+          <Property Name="PostalAddressLine1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostalAddressLine2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCityID" Type="Int32" Nullable="false" />
+          <Property Name="PostalPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationSettings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="LastEditedWhen" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Application_SystemParameters_DeliveryCityID_Application_Cities" FromRole="SystemParameters" ToRole="Cities" />
+          <NavigationProperty Name="City1" Relationship="Self.FK_Application_SystemParameters_PostalCityID_Application_Cities" FromRole="SystemParameters" ToRole="Cities" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_SystemParameters_Application_People" FromRole="SystemParameters" ToRole="People" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeID" />
+          </Key>
+          <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Application_TransactionTypes_Application_People" FromRole="TransactionTypes" ToRole="People" />
+        </EntityType>
+        <Association Name="FK_Application_Cities_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Cities_StateProvinceID_Application_StateProvinces">
+          <End Role="StateProvinces" Type="Self.StateProvince" Multiplicity="1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateProvinces">
+              <PropertyRef Name="StateProvinceID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_SystemParameters_DeliveryCityID_Application_Cities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="SystemParameters" Type="Self.SystemParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="SystemParameters">
+              <PropertyRef Name="DeliveryCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_SystemParameters_PostalCityID_Application_Cities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="SystemParameters" Type="Self.SystemParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="SystemParameters">
+              <PropertyRef Name="PostalCityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Countries_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="Countries" Type="Self.Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Countries">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_StateProvinces_CountryID_Application_Countries">
+          <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+          <End Role="StateProvinces" Type="Self.StateProvince" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="StateProvinces">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_DeliveryMethods_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="DeliveryMethods" Type="Self.DeliveryMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="DeliveryMethods">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_PaymentMethods_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PaymentMethods">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_People_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="People1" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="People1">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_StateProvinces_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="StateProvinces" Type="Self.StateProvince" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="StateProvinces">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_SystemParameters_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="SystemParameters" Type="Self.SystemParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SystemParameters">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_TransactionTypes_Application_People">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="TransactionTypes" Type="Self.TransactionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="TransactionTypes">
+              <PropertyRef Name="LastEditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WideWorldImportersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="DeliveryMethods" EntityType="Self.DeliveryMethod" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="StateProvinces" EntityType="Self.StateProvince" />
+          <EntitySet Name="SystemParameters" EntityType="Self.SystemParameter" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+          <AssociationSet Name="FK_Application_Cities_Application_People" Association="Self.FK_Application_Cities_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Cities_StateProvinceID_Application_StateProvinces" Association="Self.FK_Application_Cities_StateProvinceID_Application_StateProvinces">
+            <End Role="StateProvinces" EntitySet="StateProvinces" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_SystemParameters_DeliveryCityID_Application_Cities" Association="Self.FK_Application_SystemParameters_DeliveryCityID_Application_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="SystemParameters" EntitySet="SystemParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_SystemParameters_PostalCityID_Application_Cities" Association="Self.FK_Application_SystemParameters_PostalCityID_Application_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="SystemParameters" EntitySet="SystemParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Countries_Application_People" Association="Self.FK_Application_Countries_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="Countries" EntitySet="Countries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_StateProvinces_CountryID_Application_Countries" Association="Self.FK_Application_StateProvinces_CountryID_Application_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="StateProvinces" EntitySet="StateProvinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_DeliveryMethods_Application_People" Association="Self.FK_Application_DeliveryMethods_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="DeliveryMethods" EntitySet="DeliveryMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_PaymentMethods_Application_People" Association="Self.FK_Application_PaymentMethods_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_People_Application_People" Association="Self.FK_Application_People_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="People1" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_StateProvinces_Application_People" Association="Self.FK_Application_StateProvinces_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="StateProvinces" EntitySet="StateProvinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_SystemParameters_Application_People" Association="Self.FK_Application_SystemParameters_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="SystemParameters" EntitySet="SystemParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_TransactionTypes_Application_People" Association="Self.FK_Application_TransactionTypes_Application_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WideWorldImportersModelStoreContainer" CdmEntityContainer="WideWorldImportersEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateProvinceID" ColumnName="StateProvinceID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="LatestRecordedPopulation" ColumnName="LatestRecordedPopulation" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="FormalName" ColumnName="FormalName" />
+                <ScalarProperty Name="IsoAlpha3Code" ColumnName="IsoAlpha3Code" />
+                <ScalarProperty Name="IsoNumericCode" ColumnName="IsoNumericCode" />
+                <ScalarProperty Name="CountryType" ColumnName="CountryType" />
+                <ScalarProperty Name="LatestRecordedPopulation" ColumnName="LatestRecordedPopulation" />
+                <ScalarProperty Name="Continent" ColumnName="Continent" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Subregion" ColumnName="Subregion" />
+                <ScalarProperty Name="Border" ColumnName="Border" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryMethods">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.DeliveryMethod">
+              <MappingFragment StoreEntitySet="DeliveryMethods">
+                <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
+                <ScalarProperty Name="DeliveryMethodName" ColumnName="DeliveryMethodName" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethods">
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="PaymentMethodName" ColumnName="PaymentMethodName" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
+                <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+                <ScalarProperty Name="IsPermittedToLogon" ColumnName="IsPermittedToLogon" />
+                <ScalarProperty Name="LogonName" ColumnName="LogonName" />
+                <ScalarProperty Name="IsExternalLogonProvider" ColumnName="IsExternalLogonProvider" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="IsSystemUser" ColumnName="IsSystemUser" />
+                <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+                <ScalarProperty Name="IsSalesperson" ColumnName="IsSalesperson" />
+                <ScalarProperty Name="UserPreferences" ColumnName="UserPreferences" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="CustomFields" ColumnName="CustomFields" />
+                <ScalarProperty Name="OtherLanguages" ColumnName="OtherLanguages" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateProvinces">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.StateProvince">
+              <MappingFragment StoreEntitySet="StateProvinces">
+                <ScalarProperty Name="StateProvinceID" ColumnName="StateProvinceID" />
+                <ScalarProperty Name="StateProvinceCode" ColumnName="StateProvinceCode" />
+                <ScalarProperty Name="StateProvinceName" ColumnName="StateProvinceName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="SalesTerritory" ColumnName="SalesTerritory" />
+                <ScalarProperty Name="Border" ColumnName="Border" />
+                <ScalarProperty Name="LatestRecordedPopulation" ColumnName="LatestRecordedPopulation" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.SystemParameter">
+              <MappingFragment StoreEntitySet="SystemParameters">
+                <ScalarProperty Name="SystemParameterID" ColumnName="SystemParameterID" />
+                <ScalarProperty Name="DeliveryAddressLine1" ColumnName="DeliveryAddressLine1" />
+                <ScalarProperty Name="DeliveryAddressLine2" ColumnName="DeliveryAddressLine2" />
+                <ScalarProperty Name="DeliveryCityID" ColumnName="DeliveryCityID" />
+                <ScalarProperty Name="DeliveryPostalCode" ColumnName="DeliveryPostalCode" />
+                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+                <ScalarProperty Name="PostalAddressLine1" ColumnName="PostalAddressLine1" />
+                <ScalarProperty Name="PostalAddressLine2" ColumnName="PostalAddressLine2" />
+                <ScalarProperty Name="PostalCityID" ColumnName="PostalCityID" />
+                <ScalarProperty Name="PostalPostalCode" ColumnName="PostalPostalCode" />
+                <ScalarProperty Name="ApplicationSettings" ColumnName="ApplicationSettings" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="LastEditedWhen" ColumnName="LastEditedWhen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="WideWorldImportersModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionTypes">
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="TransactionTypeName" ColumnName="TransactionTypeName" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

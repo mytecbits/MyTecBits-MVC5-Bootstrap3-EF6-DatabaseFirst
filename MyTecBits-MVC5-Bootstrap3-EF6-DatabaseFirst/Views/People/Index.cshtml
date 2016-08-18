@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MyTecBits_MVC5_Bootstrap3_EF6_DatabaseFirst.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })</p>
+
+<table class="table table-striped">
+    <tr class="info">
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreferredName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPermittedToLogon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ 
+                    ViewData["class"] = "text-uppercase";
+                }
+                @Html.DisplayFor(modelItem => item.FullName, "class")
+            </td>
+            <td>
+                <div class="text-uppercase">@Html.DisplayFor(modelItem => item.PreferredName)</div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPermittedToLogon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress, new { htmlAttributes = new { @class = "text-uppercase" } })
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PersonID }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.PersonID }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.PersonID }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,178 @@
+﻿@model MyTecBits_MVC5_Bootstrap3_EF6_DatabaseFirst.Models.Person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreferredName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreferredName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPermittedToLogon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPermittedToLogon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsExternalLogonProvider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsExternalLogonProvider)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HashedPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HashedPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSystemUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSystemUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEmployee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEmployee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSalesperson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSalesperson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserPreferences)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserPreferences)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaxNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaxNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomFields)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomFields)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherLanguages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherLanguages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person1.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person1.FullName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersonID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
